@@ -56,7 +56,21 @@ input:focus{box-shadow:0 0 0 2px var(--blue) inset;background:#fff}
 .kind small{display:block;color:var(--sub);font-size:10.5px;font-weight:500;margin-top:2px}
 .kind.on{background:var(--cl);box-shadow:0 0 0 2px var(--c) inset}
 .kind.on::before{content:"✓";position:absolute;left:8px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font-size:12px;line-height:20px}
-.k5{--c:#A98BD6;--cl:#F4EEFB;grid-column:1/-1}.k1{--c:#EE7A9C;--cl:#FDEEF2}.k2{--c:#F3A15B;--cl:#FEF3E8}.k3{--c:#4FB3E8;--cl:#EAF6FD}.k4{--c:#6CC08B;--cl:#EBF7EF}
+.k5{--c:#A98BD6;--cl:#F4EEFB}.k1{--c:#EE7A9C;--cl:#FDEEF2}.k2{--c:#F3A15B;--cl:#FEF3E8}.k3{--c:#4FB3E8;--cl:#EAF6FD}.k4{--c:#6CC08B;--cl:#EBF7EF}
+.guide{margin-top:14px;border-radius:14px;padding:16px;background:var(--gl,#F6F7F9);border:1.5px solid var(--gc,#E6E8EC);display:none}
+.guide.show{display:block;animation:fadein .25s}
+@keyframes fadein{from{opacity:0;transform:translateY(-4px)}}
+.guide h3{margin:0 0 10px;font-size:14.5px;color:var(--gc)}
+.guide .spec{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 12px}
+.guide .spec div{background:#fff;border-radius:10px;padding:8px 4px;text-align:center;font-size:10.5px;color:var(--sub);line-height:1.4}
+.guide .spec b{display:block;font-size:13px;color:var(--ink)}
+.guide ul{margin:0;padding:0;list-style:none;font-size:12.5px;line-height:1.7}
+.guide li{position:relative;padding-left:22px;margin-bottom:5px}
+.guide li::before{content:"✓";position:absolute;left:0;top:2px;width:16px;height:16px;border-radius:50%;background:var(--gc);color:#fff;font-size:10px;line-height:16px;text-align:center}
+.guide li.ng::before{content:"×";background:#B9BDC4}
+.guide li.ng{color:var(--sub)}
+.guide .ex{margin-top:10px;background:#fff;border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.7}
+.guide .ex b{color:var(--gc)}
 .drop{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--blue);border-radius:14px;padding:16px 14px;background:var(--blue-l);cursor:pointer}
 .drop svg{width:46px;height:46px;flex:none}
 .drop b{font-size:15px;display:block;color:#2B8FC6}
@@ -156,21 +170,19 @@ footer b{font-size:13px}
       <div class="kinds" id="kinds">
         <label class="kind k1"><input type="radio" name="kind" value="omoide">
           <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="6" y="11" width="26" height="22" rx="4" fill="#fff" stroke="#EE7A9C" stroke-width="2.2"/><path d="M32 18l8-4v16l-8-4z" fill="#fff" stroke="#EE7A9C" stroke-width="2.2" stroke-linejoin="round"/><rect x="11" y="18" width="14" height="8" rx="1.5" fill="#FDEEF2" stroke="#EE7A9C" stroke-width="1.5"/></svg>
-          思い出紹介の動画<small>名前の紙を持って</small></label>
+          思い出紹介の動画<small>思い出と名前の紙を持って</small></label>
         <label class="kind k2"><input type="radio" name="kind" value="egao">
           <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="15" fill="#FEF3E8" stroke="#F3A15B" stroke-width="2.2"/><circle cx="18" cy="20" r="1.8" fill="#3D3A3A"/><circle cx="28" cy="20" r="1.8" fill="#3D3A3A"/><path d="M16 26c3 5 11 5 14 0" stroke="#3D3A3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="14" cy="25" r="2" fill="#F7B5C4"/><circle cx="32" cy="25" r="2" fill="#F7B5C4"/></svg>
           笑顔の動画<small>にっこり5秒</small></label>
         <label class="kind k3"><input type="radio" name="kind" value="nyuen">
           <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="10" y="9" width="26" height="30" rx="2" fill="#fff" stroke="#4FB3E8" stroke-width="2.2" transform="rotate(-6 23 24)"/><circle cx="23" cy="21" r="5" fill="#EAF6FD" stroke="#4FB3E8" stroke-width="1.8"/><path d="M15 32c2-5 14-5 16 0" stroke="#4FB3E8" stroke-width="1.8" fill="none"/><circle cx="34" cy="10" r="4" fill="#F6C343"/></svg>
           入園したころの写真<small>小さかったころ</small></label>
-        <label class="kind k4"><input type="radio" name="kind" value="tomodachi">
-          <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="16" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><circle cx="30" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><path d="M7 36c1-8 17-8 18 0M21 36c1-8 17-8 18 0" stroke="#6CC08B" stroke-width="2" fill="none"/><path d="M23 9l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z" fill="#F6C343"/></svg>
-          友だちとの写真<small>あれば1〜2まい</small></label>
       
         <label class="kind k5"><input type="radio" name="kind" value="koe">
           <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="17" y="7" width="12" height="20" rx="6" fill="#F4EEFB" stroke="#A98BD6" stroke-width="2.2"/><path d="M11 22c0 7 5 12 12 12s12-5 12-12M23 34v6M17 40h12" stroke="#A98BD6" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M38 12c2 2 2 6 0 8M41 9c4 4 4 10 0 14" stroke="#F6C343" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-          名前をいう声<small>「ゆり たろうです」など／ボイスメモでOK</small></label>
+          名前をいう声<small>ボイスメモでOK（任意）</small></label>
       </div>
+      <div class="guide" id="guide"></div>
     </section>
 
     <section class="card">
@@ -178,7 +190,7 @@ footer b{font-size:13px}
       <p class="lead">動画・写真・音声をえらべます（まとめてOK）。</p>
       <label class="drop" for="fileInput">
         <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#fff"/><path d="M23 31V15M16 22l7-7 7 7" stroke="#4FB3E8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div><b>ここをタップしてえらぶ</b><span>動画は横向き・5秒くらい／1つ30MBまで</span></div>
+        <div><b>ここをタップしてえらぶ</b><span id="dropHint">先にSTEP 3で、おくるものをえらんでください</span></div>
       </label>
       <input id="fileInput" type="file" accept="video/*,image/*,audio/*,.m4a,.mp3,.wav,.aac" multiple>
       <ul class="files" id="files"></ul>
@@ -229,7 +241,7 @@ function msg(el, text, kind) { el.textContent = text; el.className = 'msg ' + (t
 async function call(fn, arg) {
   if (DEMO) {
     await new Promise(r => setTimeout(r, fn === 'upload' ? 900 : 300));
-    return fn === 'checkPass' ? arg === 'ゆりぐみ' : { ok: true };
+    return fn === 'checkPass' ? arg === 'ゆりぐみ' : fn === 'upload' ? { ok: true } : null;
   }
   const r = await fetch(API_URL, {
     method: 'POST',
@@ -248,15 +260,67 @@ $('btnPass').onclick = async () => {
   $('btnPass').disabled = true;
   try {
     if (await call('checkPass', p)) {
-      PASS = p; $('st2').classList.add('on'); $('secPass').classList.add('hide'); $('secForm').classList.remove('hide');
+      PASS = p; loadGuide(); $('st2').classList.add('on'); $('secPass').classList.add('hide'); $('secForm').classList.remove('hide');
     } else msg($('passMsg'), 'あいことばがちがうようです。もう一度お確かめください。', 'err');
   } catch (e) { msg($('passMsg'), 'つながりませんでした。少し時間をおいてお試しください。', 'err'); }
   $('btnPass').disabled = false;
 };
 
-// 3. 種類
+// 3. 種類ごとの「くわしい撮り方」
+const GUIDE = {
+  omoide: { c: '#EE7A9C', l: '#FDEEF2', t: '思い出紹介の動画の撮り方', accept: 'video/*',
+    spec: [['横向き', 'スマホを横に'], ['5秒以内', '短めでOK'], ['1本', '1人につき']],
+    ok: ['白い画用紙や白い紙に「保育園での一番の思い出」とお名前を、お子さまが自分で書く', '書いた紙を持った状態で、白い壁などの白い背景の前で撮る', '動画の中で、お子さま自身が名前を言う'],
+    ng: ['暗い場所や逆光（うしろに窓）は顔がくらくなります。できるだけ明るい場所で'],
+    ex: 'せりふの例：「ゆり たろうです！」' },
+  egao: { c: '#F3A15B', l: '#FEF3E8', t: '笑顔の動画の撮り方', accept: 'video/*',
+    spec: [['横向き', 'スマホを横に'], ['5秒以内', '短めでOK'], ['1本', '1人につき']],
+    ok: ['お子さまの笑顔がよく見えるように', '白い壁などの白い背景の前で', 'できるだけ明るい場所で'],
+    ng: ['ほかのお友だちの顔が大きくうつるものは、えらばないでください'],
+    ex: 'コツ：「せーの、にっこり！」と声をかけると自然な笑顔になります' },
+  nyuen: { c: '#4FB3E8', l: '#EAF6FD', t: '入園したころの写真のえらび方', accept: 'image/*',
+    spec: [['1〜3まい', 'お気に入りを'], ['入園のころ', '0〜2さいごろ'], ['向きは自由', 'たて・よこOK']],
+    ok: ['お子さまの顔がはっきりわかるもの', 'スマホにある写真をそのままえらぶ（画質がきれいなまま届きます）', '紙の写真は、まっすぐ上からスマホで撮ったものでOK'],
+    ng: ['LINEで受け取った写真は画質が落ちていることがあります。元の写真があればそちらを'],
+    ex: '紙の写真を撮るとき：照明が反射しないよう、窓ぎわの明るい場所で' },
+  tomodachi: { c: '#6CC08B', l: '#EBF7EF', t: '友だちとの写真のえらび方', accept: 'image/*',
+    spec: [['1〜2まい', 'あれば'], ['園でのようす', '行事・あそび'], ['向きは自由', 'たて・よこOK']],
+    ok: ['お子さまとお友だちが楽しそうにうつっているもの', '行事・おさんぽ・おでかけなど、思い出の場面'],
+    ng: ['ゆり組以外の人が大きくうつっているものは、えらばないでください'],
+    ex: 'ない場合：このカードは とばして大丈夫です' },
+  koe: { c: '#A98BD6', l: '#F4EEFB', t: '名前をいう声の録り方', accept: 'audio/*,.m4a,.mp3,.wav,.aac',
+    spec: [['1〜3秒', '名前だけ'], ['しずかな場所', 'テレビは消して'], ['1つ', '1人につき']],
+    ok: ['iPhoneは「ボイスメモ」、Androidは「レコーダー」アプリで録音', 'スマホを口から20cmくらいはなして', 'フルネームを、ゆっくり大きな声で'],
+    ng: ['エアコン・せんたく機など、まわりの音が入らないように'],
+    ex: 'せりふの例：「ゆり たろうです」\n動画の中の声でよければ、このカードはとばしてOKです' },
+};
+// 説明文はスプレッドシート（委員さんが編集）から読む。文字として安全に表示する
+function esc(t) {
+  return String(t || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])).replace(/\n/g, '<br>');
+}
+async function loadGuide() {
+  try {
+    const g = await call('guide', { pass: PASS });
+    if (g) for (const k in g) if (GUIDE[k]) Object.assign(GUIDE[k], g[k]);
+  } catch (e) { /* 読めないときは、はじめから入っている説明を使う */ }
+}
+function showGuide(k) {
+  const g = GUIDE[k], el = $('guide');
+  if (!g) { el.classList.remove('show'); return; }
+  el.style.setProperty('--gc', g.c); el.style.setProperty('--gl', g.l);
+  const ex = esc(g.ex).replace(/^(.{1,14}?)：/, '<b>$1：</b>');
+  el.innerHTML = `<h3>${esc(g.t)}</h3>
+    <div class="spec">${g.spec.map(x => `<div><b>${esc(x[0])}</b>${esc(x[1])}</div>`).join('')}</div>
+    <ul>${g.ok.map(x => `<li>${esc(x)}</li>`).join('')}${g.ng.map(x => `<li class="ng">${esc(x)}</li>`).join('')}</ul>
+    ${g.ex ? `<div class="ex">${ex}</div>` : ''}`;
+  el.classList.add('show');
+  $('fileInput').accept = g.accept;
+  $('dropHint').textContent = g.accept.startsWith('video') ? '動画をえらぶ（1つ30MBまで）'
+    : g.accept.startsWith('image') ? '写真をえらぶ（まとめてOK）' : '録音したファイルをえらぶ';
+}
 document.querySelectorAll('.kind input').forEach(r => r.onchange = () => {
   document.querySelectorAll('.kind').forEach(k => k.classList.toggle('on', k.querySelector('input').checked));
+  showGuide(r.value);
   refresh();
 });
 
@@ -339,6 +403,7 @@ $('btnMore').onclick = () => {
   picked = []; draw(); $('bar').classList.add('hide'); $('barIn').style.width = '0';
   document.querySelectorAll('.kind input').forEach(r => r.checked = false);
   document.querySelectorAll('.kind').forEach(k => k.classList.remove('on'));
+  showGuide(''); $('dropHint').textContent = '先にSTEP 3で、おくるものをえらんでください';
   $('secDone').classList.add('hide'); $('secForm').classList.remove('hide'); refresh();
 };
 
