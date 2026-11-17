@@ -56,7 +56,7 @@ input:focus{box-shadow:0 0 0 2px var(--blue) inset;background:#fff}
 .kind small{display:block;color:var(--sub);font-size:10.5px;font-weight:500;margin-top:2px}
 .kind.on{background:var(--cl);box-shadow:0 0 0 2px var(--c) inset}
 .kind.on::before{content:"✓";position:absolute;left:8px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font-size:12px;line-height:20px}
-.k1{--c:#EE7A9C;--cl:#FDEEF2}.k2{--c:#F3A15B;--cl:#FEF3E8}.k3{--c:#4FB3E8;--cl:#EAF6FD}.k4{--c:#6CC08B;--cl:#EBF7EF}
+.k5{--c:#A98BD6;--cl:#F4EEFB;grid-column:1/-1}.k1{--c:#EE7A9C;--cl:#FDEEF2}.k2{--c:#F3A15B;--cl:#FEF3E8}.k3{--c:#4FB3E8;--cl:#EAF6FD}.k4{--c:#6CC08B;--cl:#EBF7EF}
 .drop{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--blue);border-radius:14px;padding:16px 14px;background:var(--blue-l);cursor:pointer}
 .drop svg{width:46px;height:46px;flex:none}
 .drop b{font-size:15px;display:block;color:#2B8FC6}
@@ -152,17 +152,21 @@ footer b{font-size:13px}
         <label class="kind k4"><input type="radio" name="kind" value="tomodachi">
           <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="16" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><circle cx="30" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><path d="M7 36c1-8 17-8 18 0M21 36c1-8 17-8 18 0" stroke="#6CC08B" stroke-width="2" fill="none"/><path d="M23 9l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z" fill="#F6C343"/></svg>
           友だちとの写真<small>あれば1〜2まい</small></label>
+      
+        <label class="kind k5"><input type="radio" name="kind" value="koe">
+          <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="17" y="7" width="12" height="20" rx="6" fill="#F4EEFB" stroke="#A98BD6" stroke-width="2.2"/><path d="M11 22c0 7 5 12 12 12s12-5 12-12M23 34v6M17 40h12" stroke="#A98BD6" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M38 12c2 2 2 6 0 8M41 9c4 4 4 10 0 14" stroke="#F6C343" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          名前をいう声<small>「ゆり たろうです」など／ボイスメモでOK</small></label>
       </div>
     </section>
 
     <section class="card">
-      <div class="ttl"><span class="tag">STEP 4</span><span><em>動画・写真</em>をえらぶ</span></div>
-      <p class="lead">いくつかまとめてえらべます。</p>
+      <div class="ttl"><span class="tag">STEP 4</span><span><em>ファイル</em>をえらぶ</span></div>
+      <p class="lead">動画・写真・音声をえらべます（まとめてOK）。</p>
       <label class="drop" for="fileInput">
         <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#fff"/><path d="M23 31V15M16 22l7-7 7 7" stroke="#4FB3E8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div><b>ここをタップしてえらぶ</b><span>動画は横向き・5秒くらい／1つ30MBまで</span></div>
       </label>
-      <input id="fileInput" type="file" accept="video/*,image/*" multiple>
+      <input id="fileInput" type="file" accept="video/*,image/*,audio/*,.m4a,.mp3,.wav,.aac" multiple>
       <ul class="files" id="files"></ul>
       <button id="btnSend" class="btn" disabled>おくる</button>
       <div class="bar hide" id="bar"><i id="barIn"></i></div>
@@ -252,8 +256,15 @@ function draw() {
   $('files').innerHTML = '';
   picked.forEach(p => {
     const li = document.createElement('li');
-    const th = document.createElement(p.file.type.startsWith('image/') ? 'img' : 'video');
-    th.className = 'thumb'; th.src = URL.createObjectURL(p.file); th.muted = true;
+    let th;
+    if (mime(p.file).startsWith('audio/')) {
+      th = document.createElement('div'); th.className = 'thumb';
+      th.style.cssText = 'display:flex;align-items:center;justify-content:center;font-size:20px;background:#F4EEFB';
+      th.textContent = '🎤';
+    } else {
+      th = document.createElement(mime(p.file).startsWith('image/') ? 'img' : 'video');
+      th.className = 'thumb'; th.src = URL.createObjectURL(p.file); th.muted = true;
+    }
     const nm = document.createElement('span'); nm.className = 'name'; nm.textContent = p.file.name;
     const st = document.createElement('span'); st.className = 'st';
     const mb = p.file.size / 1024 / 1024;
@@ -263,6 +274,13 @@ function draw() {
     if (p.state === 'big' || p.state === 'ng') st.classList.add('ng');
     li.append(th, nm, st); $('files').append(li);
   });
+}
+// ファイルの種類（スマホによっては空なので、拡張子から決める）
+function mime(f) {
+  if (f.type) return f.type;
+  const ext = (f.name.match(/\.([a-z0-9]+)$/i) || [, ''])[1].toLowerCase();
+  return { m4a: 'audio/mp4', mp3: 'audio/mpeg', wav: 'audio/wav', aac: 'audio/aac',
+           mov: 'video/quicktime', mp4: 'video/mp4', heic: 'image/heic', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png' }[ext] || '';
 }
 function kind() { const r = document.querySelector('.kind input:checked'); return r ? r.value : ''; }
 function refresh() {
@@ -290,7 +308,7 @@ $('btnSend').onclick = async () => {
     try {
       const b64 = await toBase64(p.file, f => $('barIn').style.width = ((done + f * 0.5) / list.length * 100) + '%');
       $('barIn').style.width = ((done + 0.6) / list.length * 100) + '%';
-      await call('upload', { pass: PASS, child, kind: kind(), fileName: p.file.name, mimeType: p.file.type, base64: b64 });
+      await call('upload', { pass: PASS, child, kind: kind(), fileName: p.file.name, mimeType: mime(p.file), base64: b64 });
       p.state = 'ok';
     } catch (e) {
       p.state = 'ng'; fail++;
