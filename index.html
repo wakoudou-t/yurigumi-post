@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ゆりぐみ おくりものポスト</title>
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="ゆりぐみ おくりものポスト">
+<meta property="og:description" content="卒園DVDの動画・写真をきれいなまま届けるページです">
+<meta property="og:image" content="https://wakoudou-t.github.io/yurigumi-post/hero.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap">
+<style>
+:root{
+  --ink:#3D3A3A; --sub:#7C7878; --line:#E6E8EC;
+  --pink:#EE7A9C; --pink-d:#D9607F; --pink-l:#FDEEF2;
+  --blue:#4FB3E8; --blue-l:#EAF6FD;
+  --yellow:#F6C343; --green:#6CC08B; --orange:#F3A15B;
+}
+*{box-sizing:border-box}
+html,body{margin:0;color:var(--ink);font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN",sans-serif;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background-color:#F3F4F6;
+  background-image:linear-gradient(#E8EAED 1px,transparent 1px),linear-gradient(90deg,#E8EAED 1px,transparent 1px);
+  background-size:14px 14px}
+.top{background:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;box-shadow:0 1px 0 var(--line)}
+.top svg{width:34px;height:34px;flex:none}
+.top b{font-size:16px;color:var(--blue);letter-spacing:.03em;display:block;line-height:1.2}
+.top small{font-size:10px;color:var(--sub);display:block}
+.hero{position:relative;background:#fff;overflow:hidden;padding:18px 16px 0}
+.hero h1{position:relative;z-index:2;margin:0;font-size:27px;line-height:1.45;font-weight:800;letter-spacing:.04em}
+.hero h1 .b{color:var(--blue)} .hero h1 .p{color:var(--pink)}
+.hero p{position:relative;z-index:2;margin:6px 0 0;font-size:12.5px;color:var(--sub);line-height:1.7}
+.hero img.scene{display:block;width:calc(100% + 32px);margin:16px -16px 0;height:auto;aspect-ratio:900/492;object-fit:cover}
+.wrap{max-width:460px;margin:0 auto;padding:0 16px 32px}
+.demo{background:#FFF6D6;color:#8A6A1C;font-size:12px;text-align:center;padding:6px;border-radius:8px;margin:12px 0 0}
+.steps{display:flex;justify-content:center;gap:6px;margin:18px 0 14px}
+.steps i{width:28px;height:6px;border-radius:9px;background:#DADDE2}
+.steps i.on{background:var(--pink)}
+.card{background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 2px 12px rgba(40,50,70,.07);margin-bottom:14px;position:relative}
+.card .mark{position:absolute;right:16px;top:18px;width:30px;height:16px}
+.ttl{font-size:16px;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.ttl .tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--blue);border-radius:99px;padding:3px 8px}
+.ttl em{font-style:normal;color:var(--pink)}
+.lead{font-size:12px;color:var(--sub);margin:0 0 14px;line-height:1.7}
+input[type=text],input[type=password]{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:8px;border:none;background:#EEF0F3;color:var(--ink);outline:none}
+input:focus{box-shadow:0 0 0 2px var(--blue) inset;background:#fff}
+.btn{position:relative;display:block;width:100%;font:inherit;font-weight:700;font-size:16px;padding:15px 40px;border:none;border-radius:999px;background:var(--pink);color:#fff;cursor:pointer;margin-top:16px;letter-spacing:.08em;box-shadow:0 3px 0 var(--pink-d)}
+.btn::after{content:"";position:absolute;right:20px;top:50%;width:7px;height:7px;border-top:2px solid #fff;border-right:2px solid #fff;transform:translateY(-50%) rotate(45deg)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--pink-d)}
+.btn[disabled]{background:#D5D8DD;box-shadow:0 3px 0 #C3C7CD;cursor:default}
+.btn.ghost{background:#fff;color:var(--pink);border:2px solid var(--pink);box-shadow:none}
+.btn.ghost::after{border-color:var(--pink)}
+.kinds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kind{position:relative;border:1.5px solid var(--c);border-radius:14px;padding:14px 8px 12px;text-align:center;background:#fff;cursor:pointer;font-size:13px;font-weight:700;line-height:1.4;user-select:none;transition:background .15s}
+.kind input{position:absolute;opacity:0;pointer-events:none}
+.kind svg{width:46px;height:46px;display:block;margin:0 auto 6px}
+.kind small{display:block;color:var(--sub);font-size:10.5px;font-weight:500;margin-top:2px}
+.kind.on{background:var(--cl);box-shadow:0 0 0 2px var(--c) inset}
+.kind.on::before{content:"✓";position:absolute;left:8px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font-size:12px;line-height:20px}
+.k1{--c:#EE7A9C;--cl:#FDEEF2}.k2{--c:#F3A15B;--cl:#FEF3E8}.k3{--c:#4FB3E8;--cl:#EAF6FD}.k4{--c:#6CC08B;--cl:#EBF7EF}
+.drop{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--blue);border-radius:14px;padding:16px 14px;background:var(--blue-l);cursor:pointer}
+.drop svg{width:46px;height:46px;flex:none}
+.drop b{font-size:15px;display:block;color:#2B8FC6}
+.drop span{font-size:11px;color:var(--sub);line-height:1.6}
+#fileInput{display:none}
+.files{list-style:none;padding:0;margin:12px 0 0}
+.files li{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;background:#F6F7F9;margin-bottom:6px;font-size:12px}
+.files .thumb{width:52px;height:38px;border-radius:6px;background:#E3E6EA;flex:none;object-fit:cover}
+.files .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.files .st{font-size:11px;color:var(--sub);flex:none}
+.files .st.ok{color:#3E9E62;font-weight:700}
+.files .st.ng{color:#D4506F;font-weight:700}
+.bar{height:10px;border-radius:999px;background:#EEF0F3;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink));border-radius:999px;transition:width .3s}
+.msg{margin-top:12px;font-size:13px;line-height:1.6;padding:10px 12px;border-radius:10px;display:none}
+.msg.err{display:block;background:#FDEEF2;color:#C7425F}
+.msg.info{display:block;background:#EBF7EF;color:#3E8A58}
+.hide{display:none!important}
+.done{text-align:center;padding:28px 18px 22px}
+.done svg{width:150px;height:150px}
+.done h2{font-size:22px;margin:8px 0 6px;font-weight:800}
+.done h2 .b{color:var(--blue)}
+.done p{font-size:13px;color:var(--sub);line-height:1.8;margin:0}
+.pop{animation:pop .6s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.howto div{text-align:center;font-size:10.5px;color:var(--sub);line-height:1.5}
+.howto svg{width:38px;height:38px;display:block;margin:0 auto 4px}
+footer{background:var(--blue);color:#fff;text-align:center;font-size:11.5px;line-height:1.8;padding:18px 16px 22px}
+footer b{font-size:13px}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
+.confetti i{position:absolute;top:-20px;width:9px;height:13px;border-radius:3px;animation:fall 2.6s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+</style>
+</head>
+<body>
+<div class="top">
+  <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#EAF6FD"/>
+    <path d="M17 27V17" stroke="#6CC08B" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M17 17c-3-4-4-8-3-11 2.5 2 3.5 6 3 11zM17 17c3-4 4-8 3-11-2.5 2-3.5 6-3 11zM17 17c-4-1-8-1-10-4 3-1 7 0 10 4zM17 17c4-1 8-1 10-4-3-1-7 0-10 4z" fill="#fff" stroke="#EE7A9C" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="17" cy="14" r="1.5" fill="#F6C343"/></svg>
+  <div><b>おくりものポスト</b><small>ゆり組 そつえんDVD 素材うけつけ</small></div>
+</div>
+
+<div class="hero">
+  <h1><span class="b">おもいで</span>を、<br><span class="p">とどけ</span>よう。</h1>
+  <p>動画や写真を、きれいなまま<br>DVD係までとどけます。</p>
+  <img class="scene" alt="" src="hero.jpg">
+</div>
+
+<div class="wrap">
+  <div id="demoNote" class="demo hide">これは見本の画面です（実際には送られません）</div>
+  <div class="steps"><i class="on"></i><i id="st2"></i><i id="st3"></i></div>
+
+  <!-- あいことば -->
+  <section id="secPass" class="card">
+    <svg class="mark" viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="#EE7A9C" stroke-width="3"/><circle cx="22" cy="8" r="6" fill="none" stroke="#4FB3E8" stroke-width="3"/></svg>
+    <div class="ttl"><span class="tag">STEP 1</span><span><em>あいことば</em>を入れる</span></div>
+    <p class="lead">おてがみに書いてある「あいことば」を入れてください。</p>
+    <input id="pass" type="password" autocomplete="off" placeholder="あいことば">
+    <button id="btnPass" class="btn">はじめる</button>
+    <div id="passMsg" class="msg"></div>
+    <div class="howto" style="margin-top:20px">
+      <div><svg viewBox="0 0 38 38"><circle cx="19" cy="19" r="17" fill="#FDEEF2"/><rect x="12" y="10" width="14" height="19" rx="2" fill="#fff" stroke="#EE7A9C" stroke-width="2"/><path d="M15 16h8M15 20h6" stroke="#EE7A9C" stroke-width="2" stroke-linecap="round"/></svg>えらぶ</div>
+      <div><svg viewBox="0 0 38 38"><circle cx="19" cy="19" r="17" fill="#EAF6FD"/><path d="M19 27V12M13 18l6-6 6 6" stroke="#4FB3E8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>おくる</div>
+      <div><svg viewBox="0 0 38 38"><circle cx="19" cy="19" r="17" fill="#FFF6D6"/><path d="M12 19l5 5 9-10" stroke="#E5A919" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>とどく</div>
+    </div>
+  </section>
+
+  <div id="secForm" class="hide">
+    <section class="card">
+      <div class="ttl"><span class="tag">STEP 2</span><span><em>お子さま</em>のお名前</span></div>
+      <p class="lead">だれの分か分かるように使います。DVDやファイル名には出ません。</p>
+      <input id="child" type="text" maxlength="30" placeholder="れい：ゆり たろう">
+    </section>
+
+    <section class="card">
+      <div class="ttl"><span class="tag">STEP 3</span><span><em>おくるもの</em>をえらぶ</span></div>
+      <p class="lead">あてはまるものを1つえらんでください。</p>
+      <div class="kinds" id="kinds">
+        <label class="kind k1"><input type="radio" name="kind" value="omoide">
+          <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="6" y="11" width="26" height="22" rx="4" fill="#fff" stroke="#EE7A9C" stroke-width="2.2"/><path d="M32 18l8-4v16l-8-4z" fill="#fff" stroke="#EE7A9C" stroke-width="2.2" stroke-linejoin="round"/><rect x="11" y="18" width="14" height="8" rx="1.5" fill="#FDEEF2" stroke="#EE7A9C" stroke-width="1.5"/></svg>
+          思い出紹介の動画<small>名前の紙を持って</small></label>
+        <label class="kind k2"><input type="radio" name="kind" value="egao">
+          <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="15" fill="#FEF3E8" stroke="#F3A15B" stroke-width="2.2"/><circle cx="18" cy="20" r="1.8" fill="#3D3A3A"/><circle cx="28" cy="20" r="1.8" fill="#3D3A3A"/><path d="M16 26c3 5 11 5 14 0" stroke="#3D3A3A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="14" cy="25" r="2" fill="#F7B5C4"/><circle cx="32" cy="25" r="2" fill="#F7B5C4"/></svg>
+          笑顔の動画<small>にっこり5秒</small></label>
+        <label class="kind k3"><input type="radio" name="kind" value="nyuen">
+          <svg viewBox="0 0 46 46" aria-hidden="true"><rect x="10" y="9" width="26" height="30" rx="2" fill="#fff" stroke="#4FB3E8" stroke-width="2.2" transform="rotate(-6 23 24)"/><circle cx="23" cy="21" r="5" fill="#EAF6FD" stroke="#4FB3E8" stroke-width="1.8"/><path d="M15 32c2-5 14-5 16 0" stroke="#4FB3E8" stroke-width="1.8" fill="none"/><circle cx="34" cy="10" r="4" fill="#F6C343"/></svg>
+          入園したころの写真<small>小さかったころ</small></label>
+        <label class="kind k4"><input type="radio" name="kind" value="tomodachi">
+          <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="16" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><circle cx="30" cy="18" r="5.5" fill="#EBF7EF" stroke="#6CC08B" stroke-width="2"/><path d="M7 36c1-8 17-8 18 0M21 36c1-8 17-8 18 0" stroke="#6CC08B" stroke-width="2" fill="none"/><path d="M23 9l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z" fill="#F6C343"/></svg>
+          友だちとの写真<small>あれば1〜2まい</small></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="ttl"><span class="tag">STEP 4</span><span><em>動画・写真</em>をえらぶ</span></div>
+      <p class="lead">いくつかまとめてえらべます。</p>
+      <label class="drop" for="fileInput">
+        <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#fff"/><path d="M23 31V15M16 22l7-7 7 7" stroke="#4FB3E8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>ここをタップしてえらぶ</b><span>動画は横向き・5秒くらい／1つ30MBまで</span></div>
+      </label>
+      <input id="fileInput" type="file" accept="video/*,image/*" multiple>
+      <ul class="files" id="files"></ul>
+      <button id="btnSend" class="btn" disabled>おくる</button>
+      <div class="bar hide" id="bar"><i id="barIn"></i></div>
+      <div id="formMsg" class="msg"></div>
+    </section>
+  </div>
+
+  <section id="secDone" class="card done hide">
+    <svg class="pop" viewBox="0 0 150 150" aria-hidden="true">
+      <circle cx="75" cy="75" r="60" fill="#fff" stroke="#4FB3E8" stroke-width="16"/>
+      <rect x="47" y="56" width="56" height="40" rx="6" fill="#EE7A9C"/>
+      <path d="M47 62 L75 82 L103 62" stroke="#fff" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+      <circle cx="104" cy="54" r="14" fill="#6CC08B"/><path d="M97 54l5 5 9-10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="30" cy="30" r="5" fill="#F6C343"/><circle cx="128" cy="118" r="4" fill="#EE7A9C"/>
+    </svg>
+    <h2><span class="b">とどきました！</span></h2>
+    <p>ご協力ありがとうございます。<br>すてきなDVDになるよう、<br>たいせつに使わせていただきます。</p>
+    <button id="btnMore" class="btn ghost">つづけておくる</button>
+  </section>
+</div>
+
+<footer><b>ゆり組 茶話会委員</b><br>こまったときは、茶話会委員までお声がけください</footer>
+
+<script>
+// Apps Scriptの外（パソコンで直接開いたとき）は見本モードで動く
+// ▼ Apps Script の「ウェブアプリのURL」（受け取り係）。鍵ではないので書いてOK
+const API_URL = 'https://script.google.com/macros/s/AKfycbwetmv8O9DHtn961nQx8wt0kUGwm1oN9u1bgpY2t3S9lPRiwb5pxcTOYVv7Tn12iJ7tSA/exec';
+// パソコンでファイルを直接開いたとき、または ?demo を付けたときは見本モード
+const DEMO = location.protocol === 'file:' || /[?&]demo/.test(location.search);
+if (DEMO) document.getElementById('demoNote').classList.remove('hide');
+const MAX_MB = 30;
+let PASS = '';
+let picked = [];
+
+const $ = id => document.getElementById(id);
+function msg(el, text, kind) { el.textContent = text; el.className = 'msg ' + (text ? kind : ''); }
+
+async function call(fn, arg) {
+  if (DEMO) {
+    await new Promise(r => setTimeout(r, fn === 'upload' ? 900 : 300));
+    return fn === 'checkPass' ? arg === 'ゆりぐみ' : { ok: true };
+  }
+  const r = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // 事前確認なしで送れる形
+    body: JSON.stringify({ fn, arg }),
+  });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || 'おくれませんでした。');
+  return j.result;
+}
+
+// 1. あいことば
+$('btnPass').onclick = async () => {
+  const p = $('pass').value.trim();
+  if (!p) return msg($('passMsg'), 'あいことばを入れてください。', 'err');
+  $('btnPass').disabled = true;
+  try {
+    if (await call('checkPass', p)) {
+      PASS = p; $('st2').classList.add('on'); $('secPass').classList.add('hide'); $('secForm').classList.remove('hide');
+    } else msg($('passMsg'), 'あいことばがちがうようです。もう一度お確かめください。', 'err');
+  } catch (e) { msg($('passMsg'), 'つながりませんでした。少し時間をおいてお試しください。', 'err'); }
+  $('btnPass').disabled = false;
+};
+
+// 3. 種類
+document.querySelectorAll('.kind input').forEach(r => r.onchange = () => {
+  document.querySelectorAll('.kind').forEach(k => k.classList.toggle('on', k.querySelector('input').checked));
+  refresh();
+});
+
+// 4. ファイル
+$('fileInput').onchange = e => {
+  for (const f of e.target.files) picked.push({ file: f, state: 'wait' });
+  e.target.value = '';
+  draw(); refresh();
+};
+function draw() {
+  $('files').innerHTML = '';
+  picked.forEach(p => {
+    const li = document.createElement('li');
+    const th = document.createElement(p.file.type.startsWith('image/') ? 'img' : 'video');
+    th.className = 'thumb'; th.src = URL.createObjectURL(p.file); th.muted = true;
+    const nm = document.createElement('span'); nm.className = 'name'; nm.textContent = p.file.name;
+    const st = document.createElement('span'); st.className = 'st';
+    const mb = p.file.size / 1024 / 1024;
+    if (mb > MAX_MB) { p.state = 'big'; }
+    st.textContent = { wait: mb.toFixed(1) + 'MB', big: '大きすぎます', ok: 'とどきました', ng: 'しっぱい', go: 'おくっています…' }[p.state];
+    if (p.state === 'ok') st.classList.add('ok');
+    if (p.state === 'big' || p.state === 'ng') st.classList.add('ng');
+    li.append(th, nm, st); $('files').append(li);
+  });
+}
+function kind() { const r = document.querySelector('.kind input:checked'); return r ? r.value : ''; }
+function refresh() {
+  $('btnSend').disabled = !(kind() && picked.some(p => p.state === 'wait'));
+}
+
+function toBase64(file, onProgress) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onprogress = e => e.lengthComputable && onProgress(e.loaded / e.total);
+    r.onload = () => res(String(r.result).split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+$('btnSend').onclick = async () => {
+  const child = $('child').value.trim();
+  if (!child) return msg($('formMsg'), 'お子さまのお名前を入れてください。', 'err');
+  const list = picked.filter(p => p.state === 'wait');
+  $('btnSend').disabled = true; $('bar').classList.remove('hide'); msg($('formMsg'), '', '');
+  let done = 0, fail = 0;
+  for (const p of list) {
+    p.state = 'go'; draw();
+    try {
+      const b64 = await toBase64(p.file, f => $('barIn').style.width = ((done + f * 0.5) / list.length * 100) + '%');
+      $('barIn').style.width = ((done + 0.6) / list.length * 100) + '%';
+      await call('upload', { pass: PASS, child, kind: kind(), fileName: p.file.name, mimeType: p.file.type, base64: b64 });
+      p.state = 'ok';
+    } catch (e) {
+      p.state = 'ng'; fail++;
+      msg($('formMsg'), (e && e.message) ? e.message : 'おくれませんでした。', 'err');
+    }
+    done++; $('barIn').style.width = (done / list.length * 100) + '%'; draw();
+  }
+  if (!fail) {
+    setTimeout(() => { $('st3').classList.add('on'); $('secForm').classList.add('hide'); $('secDone').classList.remove('hide'); confetti(); window.scrollTo(0, 0); }, 400);
+  } else refresh();
+};
+
+$('btnMore').onclick = () => {
+  picked = []; draw(); $('bar').classList.add('hide'); $('barIn').style.width = '0';
+  document.querySelectorAll('.kind input').forEach(r => r.checked = false);
+  document.querySelectorAll('.kind').forEach(k => k.classList.remove('on'));
+  $('secDone').classList.add('hide'); $('secForm').classList.remove('hide'); refresh();
+};
+
+function confetti() {
+  const box = document.createElement('div'); box.className = 'confetti';
+  const colors = ['#F49BB0', '#8CC49A', '#9CCBEF', '#F7C96A', '#FFFFFF'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('i');
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDelay = Math.random() * 0.8 + 's';
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+    box.append(c);
+  }
+  document.body.append(box); setTimeout(() => box.remove(), 3600);
+}
+</script>
+</body>
+</html>
