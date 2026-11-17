@@ -85,6 +85,9 @@ input:focus{box-shadow:0 0 0 2px var(--blue) inset;background:#fff}
 .howto{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
 .howto div{text-align:center;font-size:10.5px;color:var(--sub);line-height:1.5}
 .howto svg{width:38px;height:38px;display:block;margin:0 auto 4px}
+.anshin{background:#fff;border-radius:16px;padding:16px 18px;margin:4px 0 0;box-shadow:0 2px 12px rgba(40,50,70,.07);font-size:12px;line-height:1.8;color:var(--sub)}
+.anshin b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:4px}
+.anshin ul{margin:0;padding-left:1.2em}
 footer{background:var(--blue);color:#fff;text-align:center;font-size:11.5px;line-height:1.8;padding:18px 16px 22px}
 footer b{font-size:13px}
 .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
@@ -115,8 +118,8 @@ footer b{font-size:13px}
   <section id="secPass" class="card">
     <svg class="mark" viewBox="0 0 30 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="#EE7A9C" stroke-width="3"/><circle cx="22" cy="8" r="6" fill="none" stroke="#4FB3E8" stroke-width="3"/></svg>
     <div class="ttl"><span class="tag">STEP 1</span><span><em>あいことば</em>を入れる</span></div>
-    <p class="lead">おてがみに書いてある「あいことば」を入れてください。</p>
-    <input id="pass" type="password" autocomplete="off" placeholder="あいことば">
+    <p class="lead">おてがみに書いてある「あいことば」を入れてください（英数字）。</p>
+    <input id="pass" type="text" inputmode="latin" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="あいことば（英数字）">
     <button id="btnPass" class="btn">はじめる</button>
     <div id="passMsg" class="msg"></div>
     <div class="howto" style="margin-top:20px">
@@ -179,6 +182,14 @@ footer b{font-size:13px}
     <p>ご協力ありがとうございます。<br>すてきなDVDになるよう、<br>たいせつに使わせていただきます。</p>
     <button id="btnMore" class="btn ghost">つづけておくる</button>
   </section>
+  <div class="anshin">
+    <b>🔒 おあずかりする動画・写真について</b>
+    <ul>
+      <li>見るのはDVD係（茶話会委員）だけです。ほかの保護者や外部の人には見えません。</li>
+      <li>DVDを作るためだけに使い、AIに読みこませたりネットに公開したりはしません。</li>
+      <li>DVDが完成したら、おあずかりしたデータはすべて削除します。</li>
+    </ul>
+  </div>
 </div>
 
 <footer><b>ゆり組 茶話会委員</b><br>こまったときは、茶話会委員までお声がけください</footer>
@@ -214,7 +225,7 @@ async function call(fn, arg) {
 
 // 1. あいことば
 $('btnPass').onclick = async () => {
-  const p = $('pass').value.trim();
+  const p = $('pass').value.normalize('NFKC').trim().toLowerCase();
   if (!p) return msg($('passMsg'), 'あいことばを入れてください。', 'err');
   $('btnPass').disabled = true;
   try {
