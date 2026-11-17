@@ -93,6 +93,18 @@ footer b{font-size:13px}
 .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
 .confetti i{position:absolute;top:-20px;width:9px;height:13px;border-radius:3px;animation:fall 2.6s linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+
+/* パソコンなど広い画面：文字は左、写真は右。全体を中央にまとめる */
+.top{padding-left:max(16px,calc((100% - 960px)/2 + 24px));padding-right:max(16px,calc((100% - 960px)/2 + 24px))}
+@media (min-width:760px){
+  .hero{padding:40px 24px;border-bottom:1px solid var(--line)}
+  .hero-in{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1.35fr;gap:40px;align-items:center}
+  .hero h1{font-size:40px}
+  .hero p{font-size:15px}
+  .hero img.scene{width:100%;margin:0;border-radius:20px;box-shadow:0 8px 24px rgba(40,50,70,.12)}
+  .wrap{max-width:560px}
+  .steps{margin-top:28px}
+}
 </style>
 </head>
 <body>
@@ -105,9 +117,11 @@ footer b{font-size:13px}
 </div>
 
 <div class="hero">
-  <h1><span class="b">おもいで</span>を、<br><span class="p">とどけ</span>よう。</h1>
-  <p>動画や写真を、きれいなまま<br>DVD係までとどけます。</p>
+  <div class="hero-in">
+  <div class="hero-text"><h1><span class="b">おもいで</span>を、<br><span class="p">とどけ</span>よう。</h1>
+  <p>動画や写真を、きれいなまま<br>DVD係までとどけます。</p></div>
   <img class="scene" alt="" src="hero.jpg">
+  </div>
 </div>
 
 <div class="wrap">
